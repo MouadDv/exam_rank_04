@@ -71,7 +71,9 @@ void	exec(char	**cmd, int	type, char **env)
 			if (pid == 0)
 			{
 				dup2(read_fd, 0);
+				close(read_fd);
 				dup2(write_fd, 1);
+				close(write_fd);
 				execve(cmd[0], cmd, env);
 				write (2, "error: cannot execute ", 22);
 				write (2, cmd[0], ft_strlen(cmd[0]));
