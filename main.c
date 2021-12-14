@@ -9,23 +9,17 @@ int		flag;
 
 int		ft_strlen(char	*str)
 {
-	int	i;
-
-	i = 0;
+	int	i = 0;
 	while (str[i])
-	{
 		i++;
-	}
 	return (i);
 }
 
 void	exec(char	**cmd, int	type, char **env)
 {
-	int	i;
 	int	pid;
 	int	pip[2];
 
-	i = 0;
 	if (cmd[0] != NULL)
 	{
 		if (!strcmp(cmd[0], "cd"))
@@ -117,10 +111,7 @@ int	main(int ac, char **av, char **env)
 			k = 0;
 		}
 		else
-		{
-			cmd[k] = av[i];
-			k++;
-		}
+			cmd[k++] = av[i];
 		i++;
 	}
 	close(write_fd);
