@@ -92,11 +92,9 @@ int	main(int ac, char **av, char **env)
 	char	*cmd[1024];
 	int		i;
 	int		k;
-	int		j;
 
-	i = -1;
-	while (++i < 1024)
-		cmd[i] = NULL;
+	for (int j = 0; j < 1024; j++)
+		cmd[j] = NULL;
 	k = 0;
 	flag = 0;
 	read_fd = dup(0);
@@ -107,16 +105,14 @@ int	main(int ac, char **av, char **env)
 		if (av[i] == NULL || !strcmp(av[i], ";"))
 		{
 			exec(cmd, 0, env);
-			j = -1;
-			while (++j < 1024)
+			for (int j = 0; j < 1024; j++)
 				cmd[j] = NULL;
 			k = 0;
 		}
 		else if (!strcmp(av[i], "|"))
 		{
 			exec(cmd, 1, env);
-			j = -1;
-			while (++j < 1024)
+			for (int j = 0; j < 1024; j++)
 				cmd[j] = NULL;
 			k = 0;
 		}
