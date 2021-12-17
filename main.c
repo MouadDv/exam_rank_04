@@ -72,6 +72,7 @@ void	exec(char	**cmd, int	type, char **env)
 				write (2, "error: cannot execute ", 22);
 				write (2, cmd[0], ft_strlen(cmd[0]));
 				write (2, "\n", 1);
+				exit(1);
 			}
 			else
 			{
@@ -94,7 +95,7 @@ int	main(int ac, char **av, char **env)
 	read_fd = dup(0);
 	write_fd = dup(1);
 	i = 1;
-	while (av[i - 1])
+	while (av[i])
 	{
 		if (av[i] == NULL || !strcmp(av[i], ";"))
 		{
@@ -114,6 +115,8 @@ int	main(int ac, char **av, char **env)
 			cmd[k++] = av[i];
 		i++;
 	}
+	if (cmd[0] != NULL)
+		exec(cmd, 0, env);
 	close(write_fd);
 	close(read_fd);
 }
